@@ -3,7 +3,6 @@
 extern crate iota_trytes as trytes;
 
 use trytes::constants::HASH_LENGTH;
-use trytes::Trit;
 use trytes::BCTrit;
 
 pub const NUMBER_OF_ROUNDS: usize = 27;
