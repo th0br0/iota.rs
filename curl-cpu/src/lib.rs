@@ -11,9 +11,9 @@ extern crate num_cpus;
 #[cfg(test)]
 extern crate alloc;
 
-extern crate iota_trytes as trytes;
-extern crate iota_tmath as tmath;
 extern crate iota_curl as curl;
+extern crate iota_tmath as tmath;
+extern crate iota_trytes as trytes;
 
 #[cfg(test)]
 extern crate iota_curl_tests as curl_tests;

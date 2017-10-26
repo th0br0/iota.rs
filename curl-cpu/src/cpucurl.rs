@@ -1,22 +1,13 @@
 use trytes::*;
 use curl::*;
 
-#[derive(Copy)]
+#[derive(Copy, Clone)]
 pub struct CpuCurl<T>
 where
     T: Clone + Copy + Sized + Send + 'static,
 {
     pub state: [T; STATE_LENGTH],
     pub rounds: u8,
-}
-
-impl<T> Clone for CpuCurl<T>
-where
-    T: Clone + Copy + Sized + Send + 'static,
-{
-    fn clone(&self) -> Self {
-        *self
-    }
 }
 
 impl<T> Curl<T> for CpuCurl<T>
@@ -49,8 +40,9 @@ where
     }
 
     fn duplex(&mut self, trits: &[T], out: &mut [T]) {
-        assert!(
-            out.len() % HASH_LENGTH == 0,
+        assert_eq!(
+            out.len() % HASH_LENGTH,
+            0,
             "Output length must be a multiple of HASH_LENGTH"
         );
 

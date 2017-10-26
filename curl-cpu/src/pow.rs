@@ -1,4 +1,4 @@
-use curl::{ProofOfWork, Curl};
+use curl::{Curl, ProofOfWork};
 use copy::*;
 use trytes::*;
 use search::*;
@@ -25,8 +25,8 @@ impl ProofOfWork<Trit> for CpuPoW {
                 let mut probe = usize::max_value();
                 let wt: usize = weight as usize;
                 let start = t.len() - wt;
-                for i in (start)..t.len() {
-                    probe &= !(t[i].0 ^ t[i].1);
+                for e in t[start..].iter() {
+                    probe &= !(e.0 ^ e.1);
                     if probe == 0 {
                         return None;
                     }

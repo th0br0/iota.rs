@@ -25,8 +25,9 @@ mod cpu_search {
         while index.is_none() {
             size = min(
                 num::round_third(
-                    (offset + size * 2 / 3 +
-                        (&mut curl.state_mut()[offset + size * 2 / 3..offset + size]).incr()) as i64,
+                    (offset + size * 2 / 3
+                        + (&mut curl.state_mut()[offset + size * 2 / 3..offset + size]).incr())
+                        as i64,
                 ) as usize,
                 HASH_LENGTH,
             ) - offset;
@@ -92,8 +93,8 @@ mod cpu_search {
                     while index.is_none() && running_clone.load(Ordering::SeqCst) {
                         size = min(
                             num::round_third(
-                                offset + size * 2 / 3 +
-                                    (&mut curl.state_mut()[offset + size * 2 / 3..offset + size])
+                                offset + size * 2 / 3
+                                    + (&mut curl.state_mut()[offset + size * 2 / 3..offset + size])
                                         .incr(),
                             ),
                             HASH_LENGTH,

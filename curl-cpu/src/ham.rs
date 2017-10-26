@@ -13,7 +13,6 @@ impl HammingNonce<Trit> for CpuHam {
         tcurl: &mut C,
         bcurl: &mut CB,
     ) -> Option<usize> {
-
         search_prepare_trits(tcurl, bcurl, offset);
 
         search_cpu(
