@@ -4,8 +4,6 @@ use iota_trytes::*;
 use iota_curl_cpu::*;
 use iota_curl::Curl;
 use iota_merkle;
-
-use shared::util::c_str_to_static_slice;
 use shared::*;
 
 #[no_mangle]
@@ -46,8 +44,8 @@ pub fn iota_merkle_create(
 }
 
 #[no_mangle]
-pub fn iota_merkle_drop(merkle: *mut iota_merkle::MerkleTree) {
-    unsafe { Box::from_raw(merkle) };
+pub unsafe fn iota_merkle_drop(merkle: *mut iota_merkle::MerkleTree) {
+    Box::from_raw(merkle);
 }
 
 #[no_mangle]
@@ -84,8 +82,8 @@ pub fn iota_merkle_branch(
 }
 
 #[no_mangle]
-pub fn iota_merkle_branch_drop(branch: *mut iota_merkle::MerkleBranch) {
-    unsafe { Box::from_raw(branch) };
+pub unsafe fn iota_merkle_branch_drop(branch: *mut iota_merkle::MerkleBranch) {
+    Box::from_raw(branch);
 }
 
 #[no_mangle]
@@ -97,7 +95,7 @@ pub fn iota_merkle_branch_len(branch: &iota_merkle::MerkleBranch) -> usize {
 pub fn iota_merkle_siblings(branch: &iota_merkle::MerkleBranch) -> *const CTrits {
     let len = iota_merkle::len(branch) * HASH_LENGTH;
     let mut out_trits: Vec<Trit> = vec![0; len];
-    iota_merkle::write_branch(&branch, len - HASH_LENGTH, &mut out_trits);
+    iota_merkle::write_branch(branch, len - HASH_LENGTH, &mut out_trits);
 
     let out = Box::new(ctrits_from_trits(out_trits));
     Box::into_raw(out)

@@ -6,7 +6,7 @@ use iota_kerl::*;
 use shared::*;
 
 #[no_mangle]
-pub static IOTA_SIGN_CHECKSUM_LEN : usize = sign::CHECKSUM_LEN;
+pub static IOTA_SIGN_CHECKSUM_LEN: usize = sign::CHECKSUM_LEN;
 
 #[no_mangle]
 pub fn iota_sign_checksum(ctrits: &CTrits, kerl: &mut Kerl) -> *const CTrits {
@@ -33,5 +33,3 @@ pub fn iota_sign_checksum_validate(ctrits: &CTrits, kerl: &mut Kerl) -> u32 {
 
     result as u32
 }
-
-

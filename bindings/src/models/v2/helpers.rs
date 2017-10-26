@@ -20,4 +20,3 @@ pub fn iota_models_v2_tx_alloc_heap() -> *const CTrits {
     let out = Box::new(ctrits_from_trits(tx));
     Box::into_raw(out)
 }
-

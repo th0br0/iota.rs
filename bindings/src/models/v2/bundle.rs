@@ -8,12 +8,12 @@ use iota_models::v2;
 
 
 #[no_mangle]
-pub fn iota_models_v2_bundle_hash(
+pub unsafe fn iota_models_v2_bundle_hash(
     ctrits_ptr: *const CTrits,
     ctrits_len: usize,
     kerl: &mut Kerl,
 ) -> *const CTrits {
-    let ctrits: &[CTrits] = unsafe { slice::from_raw_parts(ctrits_ptr, ctrits_len) };
+    let ctrits: &[CTrits] = slice::from_raw_parts(ctrits_ptr, ctrits_len);
 
     assert_eq!(
         0,

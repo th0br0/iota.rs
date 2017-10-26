@@ -13,9 +13,9 @@ pub fn iota_kerl_trit_new() -> *const Kerl {
 }
 
 #[no_mangle]
-pub fn iota_kerl_trit_delete(c_kerl: *mut Kerl) {
+pub unsafe fn iota_kerl_trit_delete(c_kerl: *mut Kerl) {
     // Deallocate c_kerl
-    unsafe { Box::from_raw(c_kerl) };
+    Box::from_raw(c_kerl);
 }
 
 #[no_mangle]
@@ -50,6 +50,6 @@ pub fn iota_kerl_trit_state(c_kerl: &Kerl) -> *const CTrits {
         encoding: TritEncoding::BYTE,
         length: len,
         data: ptr,
-        byte_length: len
+        byte_length: len,
     }))
 }

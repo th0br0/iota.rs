@@ -13,9 +13,9 @@ pub fn iota_curl_trit_new() -> *const CpuCurl<Trit> {
 }
 
 #[no_mangle]
-pub fn iota_curl_trit_delete(c_curl: *mut CpuCurl<Trit>) {
+pub unsafe fn iota_curl_trit_delete(c_curl: *mut CpuCurl<Trit>) {
     // Deallocate c_curl
-    unsafe { Box::from_raw(c_curl) };
+    Box::from_raw(c_curl);
 }
 
 #[no_mangle]
@@ -60,7 +60,6 @@ pub fn iota_curl_trit_state(c_curl: &CpuCurl<Trit>) -> *const CTrits {
         encoding: TritEncoding::TRYTE,
         length: len,
         data: ptr,
-        byte_length: len
+        byte_length: len,
     }))
-    
 }

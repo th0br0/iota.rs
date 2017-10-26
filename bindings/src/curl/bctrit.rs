@@ -14,8 +14,8 @@ pub fn iota_curl_bctrit_new() -> *const CpuCurl<BCTrit> {
 }
 
 #[no_mangle]
-pub fn iota_curl_bctrit_delete(c_curl: *mut CpuCurl<BCTrit>) {
-    unsafe { Box::from_raw(c_curl) };
+pub unsafe fn iota_curl_bctrit_delete(c_curl: *mut CpuCurl<BCTrit>) {
+    Box::from_raw(c_curl);
 }
 
 #[no_mangle]
