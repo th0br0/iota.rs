@@ -6,7 +6,7 @@ use trytes::constants::HASH_LENGTH;
 use trytes::Trit;
 use trytes::BCTrit;
 
-pub const NUMBER_OF_ROUNDS: usize = 27;
+pub const NUMBER_OF_ROUNDS: usize = 81;
 pub const STATE_LENGTH: usize = HASH_LENGTH * 3;
 pub const TRANSACTION_LENGTH: usize = 2673;
 
